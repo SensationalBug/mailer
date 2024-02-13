@@ -1,9 +1,9 @@
 export const transportConfig = {
-  host: 'smtp.example.com',
-  port: 587,
-  secure: false, // upgrade later with STARTTLS
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
-    user: 'username',
-    pass: 'password',
+    user: 'pedro.sidesys@gmail.com',
+    pass: 'tnymjbarsaldcrxc',
   },
 };

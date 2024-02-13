@@ -1,3 +1,3 @@
-export class SubjectDto {
-  subject: string;
+export class RecipientDto {
+  recipient: string;
 }

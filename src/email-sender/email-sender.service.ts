@@ -1,12 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { SubjectDto } from './dto/email-sender.dto';
+import { createTransport } from 'nodemailer';
+import { RecipientDto } from './dto/email-sender.dto';
 import { transportConfig } from './transport/transport-config';
-import nodemailer from 'nodemailer';
 
 @Injectable()
 export class EmailSenderService {
-  sendEmail(subject: SubjectDto) {
-    // const transporter = nodemailer.createTransport(transportConfig);
-    console.log(nodemailer);
+  private transporter = createTransport(transportConfig);
+  sendEmail(recipient: RecipientDto) {
+    const mailOptions = {
+      from: 'Esto es un asunto de prueba',
+      to: recipient.recipient,
+      subject: 'Esto es un correo de prueba',
+      html: '<p style="font-size: 16px;">¡Gracias por usar nuestros servicios!</p>',
+    };
+    return this.transporter.verify((error, success) => {
+      if (success) {
+        return this.transporter.sendMail(mailOptions);
+      } else {
+        console.log(`success: ${error}`);
+      }
+    });
   }
 }
