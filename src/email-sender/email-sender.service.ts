@@ -13,11 +13,11 @@ export class EmailSenderService {
       subject: 'Esto es un correo de prueba',
       html: '<p style="font-size: 16px;">¡Gracias por usar nuestros servicios!</p>',
     };
-    return this.transporter.verify((error, success) => {
+    this.transporter.verify((error, success) => {
       if (success) {
         return this.transporter.sendMail(mailOptions);
       } else {
-        console.log(`success: ${error}`);
+        console.log(`error: ${error}`);
       }
     });
   }
